@@ -16,6 +16,7 @@ export default async function upload(req, res) {
   const form = new formidable.IncomingForm({
     keepExtensions: true,
     maxFileSize: 200 * 1024 * 1024,
+    uploadDir: "./public/images"
   });
 
   return new Promise((resolve, reject) => {
@@ -30,15 +31,22 @@ export default async function upload(req, res) {
         return resolve();
       }
 
-      const ext = path.extname(files.image.path);
-      const uuid = Math.random().toString(26).slice(2);
-      await renameSync(files.image.path, `./public/images/${uuid}${ext}`);
+      console.log(files)
+      console.log(files.image)
+      console.log(files.image.filepath)
+      // console.log('path', path.extname(files.image.filePath))
 
-      res.status(201).json({
-        uuid,
-        url: `/images/${uuid}${ext}`,
-      });
-      return resolve();
+      console.log(path.resolve('./upload_folder', files.name))
+
+      // const ext = path.extname(files.image.filePath);
+      // const uuid = Math.random().toString(26).slice(2);
+      // await renameSync(files.image.filePath, `./public/images/${uuid}${ext}`);
+
+      // res.status(201).json({
+      //   uuid,
+      //   url: `/images/${uuid}${ext}`,
+      // });
+      // return resolve();
     });
   });
 }

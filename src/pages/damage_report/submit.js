@@ -6,7 +6,7 @@ const DamageReportSubmit = (props) => {
     return (
         <>
             <Meta />
-            <div class="container py-12 mx-auto">
+            <div className="container py-12 mx-auto">
                 <Breadcrumbs paths={[{ title: 'Create Damage Report', route: '/damage_report/submit' }]} />
                 <DamageReportForm />
             </div>

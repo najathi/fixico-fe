@@ -1,26 +1,15 @@
+import Link from "next/link";
+
 export default function Footer() {
     return (
         <>
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
-                </div>
-                <div>
-                    <span className="footer-title">Company</span>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
-                </div>
-                <div>
-                    <span className="footer-title">Legal</span>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
+                    <Link href="/"><a className="link link-hover">Home</a></Link>
+                    <Link href="/damage_report/submit"><a className="link link-hover">Submit</a></Link>
+                    <a className="link link-hover">Status</a>
+                    <a className="link link-hover">Overview</a>
                 </div>
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
