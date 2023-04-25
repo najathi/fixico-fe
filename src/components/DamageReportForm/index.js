@@ -54,6 +54,11 @@ export default function DamageReportForm() {
     }
 
     const imageUploadHandler = (file) => {
+        setData({
+            ...data,
+            isImageLoading: true,
+        });
+
         const formData = new FormData();
         formData.append("image", file);
 
@@ -72,11 +77,16 @@ export default function DamageReportForm() {
                 console.log("Server response:", rdata);
                 setData({
                     ...data,
-                    image_url: rdata.url
+                    image_url: rdata.url,
+                    isImageLoading: false
                 })
             })
             .catch((error) => {
                 console.error("Error uploading image:", error);
+                setData({
+                    ...data,
+                    isImageLoading: false,
+                });
             });
     };
 
@@ -91,11 +101,32 @@ export default function DamageReportForm() {
         });
 
         try {
+            const formData = {
+                vehicle: {
+                    id: data.vehicle_id,
+                    model_id: data.model_id
+                },
+                image: data.image_url,
+                description: data.description,
+                customer: {
+                    name: data.cName,
+                    email: data.cEmail,
+                    phone: data.cPhone,
+                    message: data.cMessage
+                }
+            }
+
             const res = await fetch('/api/submit', {
                 method: 'POST',
-                body: JSON.stringify(data)
+                body: JSON.stringify(formData)
             });
             if (!res.ok) throw new Error('Submission failed');
+
+            setData({
+                ...data,
+                isSubmitting: false,
+                errorMessage: null
+            });
         } catch (e) {
             setData({
                 ...data,
@@ -175,6 +206,8 @@ export default function DamageReportForm() {
                         onChange={handleInputChange}
                         required
                     />
+
+                    {data.isImageLoading && <p>Image is Uploading</p>}
                 </div>
 
                 <div className="form-control w-full max-w-xs pb-3">
@@ -257,7 +290,7 @@ export default function DamageReportForm() {
                     </textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary" disabled={data.isSubmitting || data.isImageLoading}>Submit</button>
             </form>
         </div>
     )
