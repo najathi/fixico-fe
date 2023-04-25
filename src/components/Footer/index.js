@@ -8,8 +8,8 @@ export default function Footer() {
                     <span className="footer-title">Services</span>
                     <Link href="/"><a className="link link-hover">Home</a></Link>
                     <Link href="/damage_report/submit"><a className="link link-hover">Submit</a></Link>
-                    <a className="link link-hover">Status</a>
-                    <a className="link link-hover">Overview</a>
+                    <Link href="/damage_report/submit"><a className="link link-hover">Status</a></Link>
+                    <Link href="/damage_report/submit"><a className="link link-hover">Overview</a></Link>
                 </div>
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
