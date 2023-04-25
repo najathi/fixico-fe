@@ -5,7 +5,6 @@ export default async function handler(req, res) {
         const jsonDataArray = [];
         const fileNames = await fs.readdir('./public/db');
         const jsonFileNames = fileNames.filter(fileName => fileName.endsWith('.json'));
-        console.log(fileNames, jsonFileNames)
 
         for (const fileName of jsonFileNames) {
             const filePath = `./public/db/${fileName}`;

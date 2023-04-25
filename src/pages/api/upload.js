@@ -31,22 +31,15 @@ export default async function upload(req, res) {
         return resolve();
       }
 
-      console.log(files)
-      console.log(files.image)
-      console.log(files.image.filepath)
-      // console.log('path', path.extname(files.image.filePath))
+      const ext = path.extname(files.image._writeStream.path);
+      const uuid = Math.random().toString(26).slice(2);
+      await renameSync(files.image._writeStream.path, `./public/images/${uuid}${ext}`);
 
-      console.log(path.resolve('./upload_folder', files.name))
-
-      // const ext = path.extname(files.image.filePath);
-      // const uuid = Math.random().toString(26).slice(2);
-      // await renameSync(files.image.filePath, `./public/images/${uuid}${ext}`);
-
-      // res.status(201).json({
-      //   uuid,
-      //   url: `/images/${uuid}${ext}`,
-      // });
-      // return resolve();
+      res.status(201).json({
+        uuid,
+        url: `/images/${uuid}${ext}`,
+      });
+      return resolve();
     });
   });
 }

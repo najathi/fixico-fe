@@ -13,7 +13,7 @@ const HomePage = (props) => {
                 linkName="Get Started"
                 link="/damage_report/submit"
             />
-            <div class="container py-12 mx-auto">
+            <div className="container py-12 mx-auto">
                 <Breadcrumbs />
                 <CardItem />
             </div>

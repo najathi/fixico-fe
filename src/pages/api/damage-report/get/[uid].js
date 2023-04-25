@@ -2,7 +2,6 @@ import { promises as fs } from 'fs'
 
 export default async function handler(req, res) {
     const { uid } = req.query
-    console.log(uid)
 
     try {
         const jsonData = await fs.readFile(`./public/db/${uid}.json`);
