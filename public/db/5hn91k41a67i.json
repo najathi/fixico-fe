@@ -1,0 +1,15 @@
+{
+    "vehicle": {
+        "id": "47",
+        "model_id": "712"
+    },
+    "image": "/images/mi6co1kflg8.jpg",
+    "description": "desc",
+    "status": "processing",
+    "customer": {
+        "name": "Customer 1",
+        "email": "customer1@gmail.com",
+        "phone": "0754141331",
+        "message": "message"
+    }
+}

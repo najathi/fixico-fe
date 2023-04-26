@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Fragment, useCallback, useState } from "react";
 import useSWR from 'swr';
 
@@ -5,6 +6,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function DamageReportForm() {
     const { data: vehicles, error } = useSWR('/api/vehicles', fetcher);
+    const router = useRouter();
 
     const [models, setModels] = useState(null);
     const [data, setData] = useState({
@@ -122,12 +124,15 @@ export default function DamageReportForm() {
                 body: JSON.stringify(formData)
             });
             if (!res.ok) throw new Error('Submission failed');
+            const dataDR = await res.json()
+            console.log(dataDR)
 
             setData({
                 ...data,
                 isSubmitting: false,
                 errorMessage: null
             });
+            router.push(`/damage_report/complete?uid=${dataDR.uuid}`)
         } catch (e) {
             setData({
                 ...data,

@@ -1,0 +1,15 @@
+{
+    "vehicle": {
+        "id": "53",
+        "model_id": "837"
+    },
+    "image": "/images/mc378mkkb6e9.jpg",
+    "description": "heavy damage",
+    "status": "processing",
+    "customer": {
+        "name": "Cutomer 1",
+        "email": "customer1@gmail.com",
+        "phone": "0754141331",
+        "message": "Sample message"
+    }
+}
