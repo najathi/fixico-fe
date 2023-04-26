@@ -1,0 +1,15 @@
+.image {
+    width: 300px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.text {
+    padding-left: 2rem;
+}
+
+.line {
+    padding-bottom: .2rem;
+    margin-bottom: 0;
+    flex-grow: initial;
+}
