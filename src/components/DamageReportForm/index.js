@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { Fragment, useCallback, useState } from "react";
 import useSWR from 'swr';
+import toast from 'react-hot-toast';
+
+import { stepOneFormValidation, stepTwoFormValidation } from "./util/validation";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -9,12 +12,6 @@ export default function DamageReportForm() {
     const router = useRouter();
 
     const [step, setStep] = useState(1);
-    const nextStep = () => {
-        setStep(step + 1);
-    };
-    const prevStep = () => {
-        setStep(step - 1);
-    };
 
     const [models, setModels] = useState(null);
     const [data, setData] = useState({
@@ -31,6 +28,28 @@ export default function DamageReportForm() {
         isSubmitting: false,
         errorMessage: null
     });
+
+    const nextStep = () => {
+        let isValidate = false;
+
+        if (step === 1) {
+            isValidate = stepOneFormValidation(data);
+        } else if (step === 2) {
+            isValidate = stepTwoFormValidation(data);
+        } else if (step === 3) {
+            isValidate = stepThreeFormValidation(data);
+        }
+
+        if (!isValidate) {
+            return toast.error("Please all form fields are required!");
+        }
+
+        setStep(step + 1);
+    }
+
+    const prevStep = () => {
+        setStep(step - 1);
+    }
 
     const handleInputChange = useCallback((event) => {
         if (!event) return;
@@ -140,6 +159,7 @@ export default function DamageReportForm() {
                 isSubmitting: false,
                 errorMessage: null
             });
+            toast.success("Damage Report Saved!");
             router.push(`/damage_report/complete?uid=${dataDR.uuid}`)
         } catch (e) {
             setData({
