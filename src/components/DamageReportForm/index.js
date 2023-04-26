@@ -137,10 +137,10 @@ export default function DamageReportForm() {
     }, [data, error?.errors]);
 
     return (
-        <div>
+        <div className="flex flex-col">
             <ul className="steps steps-vertical lg:steps-horizontal mb-4 w-full">
                 <li className="step step-primary">Vehicle details</li>
-                <li className="step step-primary">Upload image</li>
+                <li className="step">Upload image</li>
                 <li className="step">Contact</li>
                 <li className="step">Summery</li>
             </ul>
@@ -148,7 +148,7 @@ export default function DamageReportForm() {
             <form onSubmit={damageReportSubmitHandler}>
 
                 <p className="text-sky-400 underline pb-3">Vehicle details</p>
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">Brand</span>
                     </label>
@@ -172,7 +172,7 @@ export default function DamageReportForm() {
 
                 {data.vehicle_id &&
                     models && models.length > 0 &&
-                    <div className="form-control w-full max-w-xs pb-3">
+                    <div className="form-control w-full max-w-md pb-3">
                         <label className="label">
                             <span className="label-text">Model</span>
                         </label>
@@ -194,13 +194,13 @@ export default function DamageReportForm() {
                 }
 
                 <p className="text-sky-400 underline py-3">Upload photo's of the damage</p>
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">Photo's of the damage?</span>
                     </label>
                     <input
                         type="file"
-                        className="file-input file-input-bordered file-input-sm w-full max-w-xs"
+                        className="file-input file-input-bordered file-input-sm w-full max-w-md"
                         name="image"
                         id="image"
                         onChange={handleInputChange}
@@ -210,13 +210,13 @@ export default function DamageReportForm() {
                     {data.isImageLoading && <p>Image is Uploading</p>}
                 </div>
 
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">description?</span>
                     </label>
                     <textarea
                         placeholder="Description"
-                        className="textarea textarea-bordered textarea-sm w-full max-w-xs"
+                        className="textarea textarea-bordered textarea-sm w-full max-w-md"
                         name="description"
                         id="description"
                         value={data.description}
@@ -226,14 +226,14 @@ export default function DamageReportForm() {
                 </div>
 
                 <p className="text-sky-400 underline py-3">Customer details</p>
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">Your name?</span>
                     </label>
                     <input
                         type="text"
                         placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs input-sm"
+                        className="input input-bordered w-full max-w-md input-sm"
                         name="cName"
                         id="cName"
                         value={data.cName}
@@ -242,14 +242,14 @@ export default function DamageReportForm() {
                     />
                 </div>
 
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">E-Mail Address?</span>
                     </label>
                     <input
                         type="email"
                         placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs input-sm"
+                        className="input input-bordered w-full max-w-md input-sm"
                         name="cEmail"
                         id="cEmail"
                         value={data.cEmail}
@@ -258,14 +258,14 @@ export default function DamageReportForm() {
                     />
                 </div>
 
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">Phone Number?</span>
                     </label>
                     <input
                         type="text"
                         placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs input-sm"
+                        className="input input-bordered w-full max-w-md input-sm"
                         name="cPhone"
                         id="cPhone"
                         value={data.cPhone}
@@ -274,13 +274,13 @@ export default function DamageReportForm() {
                     />
                 </div>
 
-                <div className="form-control w-full max-w-xs pb-3">
+                <div className="form-control w-full max-w-md pb-3">
                     <label className="label">
                         <span className="label-text">Message?</span>
                     </label>
                     <textarea
                         placeholder="Type here"
-                        className="textarea textarea-bordered textarea-sm w-full max-w-xs"
+                        className="textarea textarea-bordered textarea-sm w-full max-w-md"
                         name="cMessage"
                         id="cMessage"
                         value={data.cMessage}

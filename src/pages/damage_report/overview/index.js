@@ -6,7 +6,7 @@ const DamageReportOverview = (props) => {
         <>
             <Meta />
             <div className="container py-12 mx-auto">
-                <Breadcrumbs paths={[{ title: 'Damage Report', route: '/damage_report/verview' }]} />
+                <Breadcrumbs paths={[{ title: 'Damage Report', route: '/damage_report/overview' }]} />
 
                 <p>Overview</p>
             </div>
