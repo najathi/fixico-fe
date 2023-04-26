@@ -25,7 +25,7 @@ const DamageReportStatusById = ({ damageReport }) => {
                 <DamageReportItem damageReport={damageReport} />
                 <div className="divider"></div>
 
-                <h2>Previous Damage Reports..</h2>
+                <h2 className='text-lg font-bold'>Previous Damage Reports..</h2>
                 {reportByEmail &&
                     reportByEmail.length > 1 &&
                     reportByEmail.map(item => (
