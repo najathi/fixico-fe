@@ -108,6 +108,7 @@ export default function DamageReportForm() {
                 },
                 image: data.image_url,
                 description: data.description,
+                status: "processing",
                 customer: {
                     name: data.cName,
                     email: data.cEmail,

@@ -20,10 +20,12 @@ const DamageReportStatus = ({ damageReports }) => {
                             customer={item.customer}
                             image={item.image}
                             description={item.description}
+                            status={item.status}
                             vehicle={item.vehicle}
                             uuid={item.uid}
                         />
-                    ))}
+                    ))
+                }
             </div>
         </>
     )

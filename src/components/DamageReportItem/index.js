@@ -27,6 +27,7 @@ export default function DamageReportItem({ damageReport }) {
 
                 <div className="divider"></div>
                 <p className={styles.line}>Damage Note: {damageReport.description}</p>
+                <p className={styles.line}>Status: <div className="badge badge-warning">{damageReport.status}</div></p>
             </div>
         </div>
     )

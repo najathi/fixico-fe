@@ -1,9 +1,15 @@
+import useSWR from 'swr'
+
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import DamageReportItem from "../../../components/DamageReportItem";
 import Meta from "../../../components/Meta";
 import { server } from "../../../config";
+import CartStatusItem from '../../../components/CartStatusItem';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const DamageReportStatusById = ({ damageReport }) => {
+    const { data: reportByEmail } = useSWR(`/api/damage-report/filter-by?email=${damageReport.customer.email}`, fetcher);
 
     return (
         <>
@@ -17,6 +23,23 @@ const DamageReportStatusById = ({ damageReport }) => {
                 }
 
                 <DamageReportItem damageReport={damageReport} />
+                <div className="divider"></div>
+
+                <h2>Previous Damage Reports..</h2>
+                {reportByEmail &&
+                    reportByEmail.length > 1 &&
+                    reportByEmail.map(item => (
+                        <CartStatusItem
+                            key={item.uid}
+                            customer={item.customer}
+                            image={item.image}
+                            description={item.description}
+                            status={item.status}
+                            vehicle={item.vehicle}
+                            uuid={item.uid}
+                        />
+                    ))
+                }
             </div>
         </>
     )

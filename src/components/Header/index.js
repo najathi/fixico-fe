@@ -13,7 +13,6 @@ export default function Header() {
                         <li><Link href="/"><a>Home</a></Link></li>
                         <li><Link href="/damage_report/submit"><a>Submit</a></Link></li>
                         <li><Link href="/damage_report/status"><a>Status</a></Link></li>
-                        <li><Link href="/damage_report/overview"><a>Overview</a></Link></li>
                     </ul>
                 </div>
                 <Link href="/"><a className="btn btn-ghost normal-case text-xl">Fixico</a></Link>
@@ -23,7 +22,6 @@ export default function Header() {
                     <li><Link href="/"><a>Home</a></Link></li>
                     <li><Link href="/damage_report/submit"><a>Submit</a></Link></li>
                     <li><Link href="/damage_report/status"><a>Status</a></Link></li>
-                    <li><Link href="/damage_report/overview"><a>Overview</a></Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
