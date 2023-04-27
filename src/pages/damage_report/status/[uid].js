@@ -27,6 +27,11 @@ const DamageReportStatusById = ({ damageReport }) => {
 
                 <h2 className='text-lg font-bold'>Previous Damage Reports..</h2>
                 {reportByEmail &&
+                    reportByEmail.length <= 1 &&
+                    <p className='py-3'>No Data Found!</p>
+                }
+
+                {reportByEmail &&
                     reportByEmail.length > 1 &&
                     reportByEmail.map(item => (
                         <CartStatusItem

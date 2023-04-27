@@ -41,7 +41,7 @@ export default function DamageReportForm() {
         }
 
         if (!isValidate) {
-            return toast.error("Please all form fields are required!");
+            return toast.error("All fields are required!");
         }
 
         setStep(step + 1);
@@ -354,7 +354,7 @@ export default function DamageReportForm() {
                 </textarea>
             </div>
 
-            <div className="btn-group">
+            <div className="btn-group pr-3">
                 <button
                     type="button"
                     className="btn"
