@@ -3,9 +3,10 @@ import { Fragment, useCallback, useState } from "react";
 import useSWR from 'swr';
 import toast from 'react-hot-toast';
 
-import { stepOneFormValidation, stepTwoFormValidation } from "./util/validation";
+import { stepOneFormValidation, stepTwoFormValidation, stepThreeFormValidation } from "./util/validation";
+import { DataType } from "./DataType";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function DamageReportForm() {
     const { data: vehicles, error } = useSWR('/api/vehicles', fetcher);
@@ -13,8 +14,8 @@ export default function DamageReportForm() {
 
     const [step, setStep] = useState(1);
 
-    const [models, setModels] = useState(null);
-    const [data, setData] = useState({
+    const [models, setModels] = useState<any[] | null>(null);
+    const [data, setData] = useState<DataType>({
         vehicle_id: "",
         model_id: "",
         image: null,
@@ -29,7 +30,7 @@ export default function DamageReportForm() {
         errorMessage: null
     });
 
-    const nextStep = () => {
+    const nextStep = (): any => {
         let isValidate = false;
 
         if (step === 1) {
@@ -51,7 +52,7 @@ export default function DamageReportForm() {
         setStep(step - 1);
     }
 
-    const handleInputChange = useCallback((event) => {
+    const handleInputChange = useCallback((event: any) => {
         if (!event) return;
 
         let name = event.target ? event.target.name : event.name;
@@ -73,16 +74,16 @@ export default function DamageReportForm() {
         });
     }, [data]);
 
-    const mapToModelFieldHandler = (event) => {
+    const mapToModelFieldHandler = (event: any) => {
         if (!vehicles || !event.target.value) return;
 
         handleInputChange(event);
         const vehicleId = event.target.value
-        const foundModel = vehicles.find(vehicle => vehicle.id === +vehicleId);
+        const foundModel = vehicles.find((vehicle: any) => vehicle.id === +vehicleId);
         if (foundModel?.models) setModels(foundModel.models || []);
     }
 
-    const imageUploadHandler = (file) => {
+    const imageUploadHandler = (file: any) => {
         setData({
             ...data,
             isImageLoading: true,
@@ -120,7 +121,7 @@ export default function DamageReportForm() {
     };
 
 
-    const damageReportSubmitHandler = useCallback(async (event) => {
+    const damageReportSubmitHandler = useCallback(async (event: any) => {
         event.preventDefault();
 
         setData({
@@ -161,7 +162,7 @@ export default function DamageReportForm() {
             });
             toast.success("Damage Report Saved!");
             router.push(`/damage_report/complete?uid=${dataDR.uuid}`)
-        } catch (e) {
+        } catch (e: any) {
             setData({
                 ...data,
                 isSubmitting: false,
@@ -186,7 +187,7 @@ export default function DamageReportForm() {
                         onChange={mapToModelFieldHandler}
                         required
                     >
-                        {vehicles.map(item => (
+                        {vehicles.map((item: any) => (
                             <Fragment key={item.id}>
                                 <option value={item.id}>{item.name}</option>
                             </Fragment>
@@ -209,7 +210,7 @@ export default function DamageReportForm() {
                         onChange={handleInputChange}
                         required
                     >
-                        {models.map(item => (
+                        {models.map((item: any) => (
                             <Fragment key={item.id}>
                                 <option value={item.id}>{item.name}</option>
                             </Fragment>

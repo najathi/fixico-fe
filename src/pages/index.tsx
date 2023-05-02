@@ -1,9 +1,15 @@
+import { NextPage } from "next";
+
 import Hero from "../components/Hero";
 import Meta from "../components/Meta";
-import Breadcrumbs from '../components/Breadcrumbs';
 import CardItem from '../components/CardItem';
+import Breadcrumbs from "../components/Breadcrumbs";
 
-const HomePage = (props) => {
+interface HomePageProps {
+
+}
+
+const HomePage: NextPage<HomePageProps> = ({ }) => {
     return (
         <>
             <Meta />

@@ -5,10 +5,15 @@ import DamageReportItem from "../../../components/DamageReportItem";
 import Meta from "../../../components/Meta";
 import { server } from "../../../config";
 import CartStatusItem from '../../../components/CartStatusItem';
+import { NextPage } from 'next';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const DamageReportStatusById = ({ damageReport }) => {
+interface DamageReportStatusByIdProps {
+    [key: string]: any;
+}
+
+const DamageReportStatusById: NextPage<DamageReportStatusByIdProps> = ({ damageReport }) => {
     const { data: reportByEmail } = useSWR(`/api/damage-report/filter-by?email=${damageReport.customer.email}`, fetcher);
 
     return (
@@ -33,7 +38,7 @@ const DamageReportStatusById = ({ damageReport }) => {
 
                 {reportByEmail &&
                     reportByEmail.length > 1 &&
-                    reportByEmail.map(item => (
+                    reportByEmail.map((item: any) => (
                         <CartStatusItem
                             key={item.uid}
                             customer={item.customer}
@@ -50,8 +55,8 @@ const DamageReportStatusById = ({ damageReport }) => {
     )
 };
 
-export const getStaticProps = async (context) => {
-    const res = await fetch(`${server}/api/damage-report/get/${context.params.uid}`)
+export const getStaticProps = async ({ params }: any) => {
+    const res = await fetch(`${server}/api/damage-report/get/${params.uid}`)
     const damageReport = await res.json()
 
     return {
@@ -65,8 +70,8 @@ export const getStaticPaths = async () => {
     const res = await fetch(`${server}/api/damage-report/list`)
     const damageReports = await res.json()
 
-    const uids = damageReports.map((report) => report.uid)
-    const paths = uids.map((uid) => ({ params: { uid: uid } }))
+    const uids = damageReports.map((report: any) => report.uid)
+    const paths = uids.map((uid: any) => ({ params: { uid: uid } }))
 
     return {
         paths,

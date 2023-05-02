@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function Footer() {
+interface FooterProps {
+    [key: string]: any;
+}
+
+const Footer: React.FC<FooterProps> = () => {
     return (
         <>
             <footer className="footer p-10 bg-base-200 text-base-content">
@@ -27,3 +31,5 @@ export default function Footer() {
         </>
     )
 }
+
+export default Footer;

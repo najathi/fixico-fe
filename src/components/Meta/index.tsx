@@ -1,8 +1,20 @@
 import Head from 'next/head';
 import { useRouter } from "next/router";
 
-const Meta = ({ title, keywords, description, useRootUrl }) => {
-    const { asPath } = useRouter();
+interface MetaProps {
+    title?: string;
+    keywords?: string;
+    description?: string;
+    [key: string]: any;
+}
+
+const Meta: React.FC<MetaProps> = ({
+    title,
+    keywords,
+    description,
+    // useRootUrl
+}) => {
+    // const { asPath } = useRouter();
 
     return (
         <Head>

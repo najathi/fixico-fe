@@ -1,10 +1,15 @@
+import { NextPage } from "next";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import CartStatusItem from "../../../components/CartStatusItem";
 import Meta from "../../../components/Meta";
 
 import { server } from "../../../config";
 
-const DamageReportStatus = ({ damageReports }) => {
+interface DamageReportStatusProps {
+    [key: string]: any
+}
+
+const DamageReportStatus: NextPage<DamageReportStatusProps> = ({ damageReports }) => {
 
     return (
         <>
@@ -14,7 +19,7 @@ const DamageReportStatus = ({ damageReports }) => {
 
                 {damageReports &&
                     damageReports.length > 0 &&
-                    damageReports.map(item => (
+                    damageReports.map((item: any) => (
                         <CartStatusItem
                             key={item.uid}
                             customer={item.customer}

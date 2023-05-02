@@ -1,4 +1,6 @@
-function stepOneFormValidation(state) {
+import { DataType } from "../DataType"
+
+function stepOneFormValidation(state: DataType) {
     if (state.vehicle_id.length > 0 &&
         state.model_id.length > 0) {
         return true
@@ -7,7 +9,7 @@ function stepOneFormValidation(state) {
     return false
 }
 
-function stepTwoFormValidation(state) {
+function stepTwoFormValidation(state: DataType) {
     if (state.image_url.length > 0 &&
         state.description.length > 0) {
         return true
@@ -16,7 +18,7 @@ function stepTwoFormValidation(state) {
     return false
 }
 
-function stepThreeFormValidation(state) {
+function stepThreeFormValidation(state: DataType) {
     if (state.cName.length > 0 &&
         state.cEmail.length > 0 &&
         state.cPhone.length > 0 &&

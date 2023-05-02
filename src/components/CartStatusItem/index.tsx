@@ -3,9 +3,13 @@ import useSWR from 'swr';
 
 import styles from './CartStatusItem.module.css'
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function CartStatusItem({ image, status, customer, vehicle, uuid }) {
+interface CartStatusItemProps {
+    [key: string]: any;
+}
+
+const CartStatusItem: React.FC<CartStatusItemProps> = ({ image, status, customer, vehicle, uuid }) => {
     const { data: vehicleDetail } = useSWR(`/api/vehicles/${vehicle.id}?model_id=${vehicle.model_id}`, fetcher);
 
     return (
@@ -24,3 +28,5 @@ export default function CartStatusItem({ image, status, customer, vehicle, uuid 
         </div>
     )
 }
+
+export default CartStatusItem;

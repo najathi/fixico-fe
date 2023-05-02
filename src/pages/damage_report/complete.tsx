@@ -1,10 +1,16 @@
+import { NextPage } from "next";
+
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { server } from "../../config";
 
 const DamageReportItem = dynamic(() => import("../../components/DamageReportItem"))
 
-const CheckoutComplete = ({ uid, damageReport }) => {
+interface CheckoutCompleteProps {
+    [key: string]: any
+}
+
+const CheckoutComplete: NextPage<CheckoutCompleteProps> = ({ uid, damageReport }) => {
     return (
         <div className="container max-w-md mx-auto py-12">
             <div className="card w-96 mx-auto">
@@ -37,8 +43,8 @@ const CheckoutComplete = ({ uid, damageReport }) => {
     );
 };
 
-export const getServerSideProps = async (context) => {
-    const uid = context.query.uid
+export const getServerSideProps = async ({ query }: any) => {
+    const uid = query.uid
     const res = await fetch(`${server}/api/damage-report/get/${uid}`)
     const damageReport = await res.json()
 

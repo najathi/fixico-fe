@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { writeFileSync } from "fs";
 
-export default async function submit(req, res) {
+export default async function submit(req: NextApiRequest, res: NextApiResponse): Promise<any> {
   if (req.method !== "POST") {
     return res.status(405);
   }

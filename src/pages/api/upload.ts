@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import formidable from "formidable";
 import path from "path";
 import { renameSync } from "fs";
@@ -8,7 +9,7 @@ export const config = {
   },
 };
 
-export default async function upload(req, res) {
+export default async function upload(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -19,8 +20,8 @@ export default async function upload(req, res) {
     uploadDir: "./public/images"
   });
 
-  return new Promise((resolve, reject) => {
-    form.parse(req, async (err, fields, files) => {
+  return new Promise((resolve: any, _) => {
+    form.parse(req, async (err, fields, files: any) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return resolve();

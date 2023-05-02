@@ -1,12 +1,21 @@
 import Link from "next/link";
 
-export default function Breadcrumbs({ paths }) {
+type PathType = {
+    title: string;
+    route: string;
+}
+
+interface BreadcrumbsProps {
+    [key: string]: any;
+}
+
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ paths }) => {
     return (
         <div className="text-sm breadcrumbs mb-5">
             <ul>
                 <li><Link href="/"><a>Home</a></Link></li>
                 {paths &&
-                    paths.map((path, idx) => (
+                    paths.map((path: PathType, idx: number) => (
                         <li key={idx}><Link href={path.route}><a>{path.title}</a></Link></li>
                     ))
                 }
@@ -14,3 +23,5 @@ export default function Breadcrumbs({ paths }) {
         </div>
     )
 }
+
+export default Breadcrumbs;

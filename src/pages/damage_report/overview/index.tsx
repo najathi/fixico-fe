@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import Meta from "../../../components/Meta";
 
-const DamageReportOverview = (props) => {
+const DamageReportOverview: NextPage = ({ }) => {
     return (
         <>
             <Meta />

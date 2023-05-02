@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function Header() {
+interface HeaderProps {
+    [key: string]: any;
+}
+
+const Header: React.FC<HeaderProps> = ({ }) => {
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -30,3 +34,5 @@ export default function Header() {
         </div>
     )
 }
+
+export default Header;

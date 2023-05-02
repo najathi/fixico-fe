@@ -2,9 +2,13 @@ import useSWR from 'swr';
 
 import styles from './DamageReportItem.module.css'
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function DamageReportItem({ damageReport }) {
+interface DamageReportItemProps {
+    [key: string]: any;
+}
+
+const DamageReportItem: React.FC<DamageReportItemProps> = ({ damageReport }) => {
     const { data: vehicleDetail } = useSWR(`/api/vehicles/${damageReport.vehicle.id}?model_id=${damageReport.vehicle.model_id}`, fetcher);
 
     return (
@@ -32,3 +36,5 @@ export default function DamageReportItem({ damageReport }) {
         </div>
     )
 }
+
+export default DamageReportItem;

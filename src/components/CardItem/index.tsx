@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function CartItem() {
+interface CartItemProps {
+    [key: string]: any;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ }) => {
     return (
         <div className="card w-3/12 glass">
             <figure><img src="/assets/images/sites/front-card-image.jpg" alt="car!" /></figure>
@@ -16,3 +20,5 @@ export default function CartItem() {
         </div>
     )
 }
+
+export default CartItem;
