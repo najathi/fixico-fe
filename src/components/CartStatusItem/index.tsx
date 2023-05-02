@@ -2,11 +2,17 @@ import Link from "next/link";
 import useSWR from 'swr';
 
 import styles from './CartStatusItem.module.css'
+import { CustomerType, VehicleType } from "../DamageReportItem/DamageReportType";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface CartStatusItemProps {
     [key: string]: any;
+    image: string;
+    status: string;
+    customer: CustomerType;
+    vehicle: VehicleType;
+    uuid: string;
 }
 
 const CartStatusItem: React.FC<CartStatusItemProps> = ({ image, status, customer, vehicle, uuid }) => {

@@ -1,11 +1,13 @@
 import useSWR from 'swr';
 
 import styles from './DamageReportItem.module.css'
+import { DamageReportType } from './DamageReportType';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface DamageReportItemProps {
     [key: string]: any;
+    damageReport: DamageReportType
 }
 
 const DamageReportItem: React.FC<DamageReportItemProps> = ({ damageReport }) => {
