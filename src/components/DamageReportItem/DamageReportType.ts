@@ -11,7 +11,7 @@ export type CustomerType = {
 };
 
 export type DamageReportType = {
-    uuid?: string;
+    uid: any;
     image: string;
     vehicle: VehicleType;
     customer: CustomerType;

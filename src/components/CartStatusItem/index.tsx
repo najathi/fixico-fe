@@ -12,10 +12,10 @@ interface CartStatusItemProps {
     status: string;
     customer: CustomerType;
     vehicle: VehicleType;
-    uuid: string;
+    uid: string;
 }
 
-const CartStatusItem: React.FC<CartStatusItemProps> = ({ image, status, customer, vehicle, uuid }) => {
+const CartStatusItem: React.FC<CartStatusItemProps> = ({ image, status, customer, vehicle, uid }) => {
     const { data: vehicleDetail } = useSWR(`/api/vehicles/${vehicle.id}?model_id=${vehicle.model_id}`, fetcher);
 
     return (
@@ -26,7 +26,7 @@ const CartStatusItem: React.FC<CartStatusItemProps> = ({ image, status, customer
                 {vehicleDetail && <p>{vehicleDetail.name} - {vehicleDetail?.model.name}.</p>}
                 <div className="badge badge-warning">{status}</div>
                 <div className="card-actions justify-end">
-                    <Link href={`/damage_report/status/${uuid}`}>
+                    <Link href={`/damage_report/status/${uid}`}>
                         <button className="btn btn-primary">View Report</button>
                     </Link>
                 </div>

@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { server } from "../../config";
+import { DamageReportType } from "../../components/DamageReportItem/DamageReportType";
 
 const DamageReportItem = dynamic(() => import("../../components/DamageReportItem"))
 
@@ -43,10 +44,16 @@ const CheckoutComplete: NextPage<CheckoutCompleteProps> = ({ uid, damageReport }
     );
 };
 
-export const getServerSideProps = async ({ query }: any) => {
-    const uid = query.uid
+type QueryType = {
+    uid: string;
+    damageReport: DamageReportType;
+    [key: string]: any
+}
+
+export const getServerSideProps = async ({ query }: QueryType) => {
+    const uid: string = query.uid
     const res = await fetch(`${server}/api/damage-report/get/${uid}`)
-    const damageReport = await res.json()
+    const damageReport: DamageReportType = await res.json()
 
     if (!damageReport) {
         return {

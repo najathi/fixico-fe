@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         for (const fileName of jsonFileNames) {
             const filePath = `./public/db/${fileName}`;
             const fileData: any = await fs.readFile(filePath);
-            const jsonObject: DamageReportType = JSON.parse(fileData);
+            const jsonObject: DamageReportType & any = JSON.parse(fileData);
             jsonDataArray.push({ uid: fileName.split(".")[0], ...jsonObject, });
         }
 

@@ -4,9 +4,11 @@ import CartStatusItem from "../../../components/CartStatusItem";
 import Meta from "../../../components/Meta";
 
 import { server } from "../../../config";
+import { DamageReportType } from "../../../components/DamageReportItem/DamageReportType";
 
 interface DamageReportStatusProps {
-    [key: string]: any
+    [key: string]: any;
+    damageReports: DamageReportType[]
 }
 
 const DamageReportStatus: NextPage<DamageReportStatusProps> = ({ damageReports }) => {
@@ -19,7 +21,7 @@ const DamageReportStatus: NextPage<DamageReportStatusProps> = ({ damageReports }
 
                 {damageReports &&
                     damageReports.length > 0 &&
-                    damageReports.map((item: any) => (
+                    damageReports.map((item: DamageReportType) => (
                         <CartStatusItem
                             key={item.uid}
                             customer={item.customer}
@@ -27,7 +29,7 @@ const DamageReportStatus: NextPage<DamageReportStatusProps> = ({ damageReports }
                             description={item.description}
                             status={item.status}
                             vehicle={item.vehicle}
-                            uuid={item.uid}
+                            uid={item.uid}
                         />
                     ))
                 }
@@ -39,7 +41,7 @@ const DamageReportStatus: NextPage<DamageReportStatusProps> = ({ damageReports }
 
 export const getStaticProps = async () => {
     const res = await fetch(`${server}/api/damage-report/list`)
-    const damageReports = await res.json()
+    const damageReports: DamageReportType[] = await res.json()
 
     return {
         props: {

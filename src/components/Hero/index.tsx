@@ -2,6 +2,10 @@ import Link from 'next/link'
 
 interface HeroProps {
     [key: string]: any;
+    title: string;
+    desc: string;
+    linkName: string;
+    link: string;
 }
 
 const Hero: React.FC<HeroProps> = ({ title, desc, linkName, link }) => {

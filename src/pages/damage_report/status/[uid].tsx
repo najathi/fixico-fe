@@ -6,11 +6,13 @@ import Meta from "../../../components/Meta";
 import { server } from "../../../config";
 import CartStatusItem from '../../../components/CartStatusItem';
 import { NextPage } from 'next';
+import { DamageReportType } from '../../../components/DamageReportItem/DamageReportType';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface DamageReportStatusByIdProps {
     [key: string]: any;
+    damageReport: DamageReportType
 }
 
 const DamageReportStatusById: NextPage<DamageReportStatusByIdProps> = ({ damageReport }) => {
@@ -38,7 +40,7 @@ const DamageReportStatusById: NextPage<DamageReportStatusByIdProps> = ({ damageR
 
                 {reportByEmail &&
                     reportByEmail.length > 1 &&
-                    reportByEmail.map((item: any) => (
+                    reportByEmail.map((item: DamageReportType) => (
                         <CartStatusItem
                             key={item.uid}
                             customer={item.customer}
@@ -46,7 +48,7 @@ const DamageReportStatusById: NextPage<DamageReportStatusByIdProps> = ({ damageR
                             description={item.description}
                             status={item.status}
                             vehicle={item.vehicle}
-                            uuid={item.uid}
+                            uid={item.uid}
                         />
                     ))
                 }
