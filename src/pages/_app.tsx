@@ -4,6 +4,8 @@ import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css'
 import { AppProps } from 'next/app';
 
+import { wrapper } from "../store";
+
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <Layout>
@@ -16,4 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
